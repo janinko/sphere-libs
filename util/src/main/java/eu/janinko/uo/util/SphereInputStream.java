@@ -40,6 +40,12 @@ public class SphereInputStream extends InputStream {
                 cache[1]=0xA4;
                 break;
             }
+            case 0x8F: //Ź
+            {
+                cache[0]=0xC5;
+                cache[1]=0xB9;
+                break;
+            }
 
             case 0x93: //“
             {
@@ -57,16 +63,36 @@ public class SphereInputStream extends InputStream {
                 cacheLength = 3;
                 break;
             }
+            case 0x99: //™
+            {
+                cache[0]=0xE2;
+                cache[1]=0x84;
+                cache[2]=0xA2;
+                cacheLength = 3;
+                break;
+            }
             case 0x9A: //š
             {
                 cache[0]=0xC5;
                 cache[1]=0xA1;
                 break;
             }
+            case 0x9C: //ś
+            {
+                cache[0]=0xC5;
+                cache[1]=0x9B;
+                break;
+            }
             case 0x9E: //ž
             {
                 cache[0]=0xC5;
                 cache[1]=0xBE;
+                break;
+            }
+            case 0x9F: //ź
+            {
+                cache[0]=0xC5;
+                cache[1]=0xBA;
                 break;
             }
             case 0x9D: //ť
@@ -82,6 +108,12 @@ public class SphereInputStream extends InputStream {
                 cache[1]=0xA0;
                 break;
             }
+            case 0xA1: // ˇ
+            {
+                cache[0]=0xCB;
+                cache[1]=0x87;
+                break;
+            }
             case 0xA9: //©
             {
                 cache[0]=0xC2;
@@ -89,16 +121,22 @@ public class SphereInputStream extends InputStream {
                 break;
             }
 
-            case 0xBC: //Ľ
-            {
-                cache[0]=0xC4;
-                cache[1]=0xbd;
-                break;
-            }
             case 0xB4: //´
             {
                 cache[0]=0xC2;
                 cache[1]=0xB4;
+                break;
+            }
+            case 0xBC: //Ľ
+            {
+                cache[0]=0xC4;
+                cache[1]=0xBD;
+                break;
+            }
+            case 0xBD: //˝
+            {
+                cache[0]=0xCB;
+                cache[1]=0x9D;
                 break;
             }
             case 0xBE: //ľ
