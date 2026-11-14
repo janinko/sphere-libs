@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 
 import eu.janinko.andaria.spherescript.sphere.objects.Itemdef;
 import eu.janinko.andaria.spherescript.sphere.objects.Resource;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -100,7 +103,7 @@ public class ItemdefParser extends ObjectdefParser<Itemdef> {
                 it.back();
                 return;
             } else {
-                it.unknown();
+                //it.unknown();
             }
         }
     }

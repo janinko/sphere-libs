@@ -94,7 +94,7 @@ public class ChardefParser extends ObjectdefParser<Chardef> {
                 it.back();
                 return;
             } else {
-                it.unknown();
+                //it.unknown();
             }
         }
     }

@@ -4,8 +4,6 @@ import eu.janinko.andaria.spherescript.sphere.objects.Itemdef;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 /**
  *
