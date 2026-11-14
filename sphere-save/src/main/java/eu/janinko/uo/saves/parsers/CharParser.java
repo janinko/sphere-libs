@@ -17,8 +17,9 @@
 package eu.janinko.uo.saves.parsers;
 
 import eu.janinko.uo.util.ScriptReader;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import eu.janinko.uo.saves.Character;
@@ -29,17 +30,17 @@ import eu.janinko.uo.saves.Character;
  */
 public class CharParser extends AbstractSaveParser {
 
-    private Set<Character> chars;
+    private Map<Long, Character> chars;
 
     private final Matcher wiMatcher = Pattern.compile("\\[WC ([a-z0-9_]+)]").matcher("");
 
     @Override
     public void reset(ScriptReader it) {
-        chars = new HashSet<>();
+        chars = new HashMap<>();
         super.reset(it);
     }
 
-    public Set<Character> get() {
+    public Map<Long, Character> get() {
         return chars;
     }
 
@@ -49,7 +50,7 @@ public class CharParser extends AbstractSaveParser {
             String defname = wiMatcher.group(1);
             Character character = new Character(defname);
             parseItem(character);
-            chars.add(character);
+            chars.put(character.getSerial(), character);
         } else {
             throw it.error("Failed to parse chardef definition");
         }

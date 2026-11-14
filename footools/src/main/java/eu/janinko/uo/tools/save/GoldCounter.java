@@ -67,7 +67,7 @@ public class GoldCounter {
                     }
                 })
                 .peek(s -> processVars(s.getGlobals()))
-                .flatMap(s -> s.getItems().stream())
+                .flatMap(s -> s.getItems().values().stream())
                 .forEach(GoldCounter::processItem);
 
         out.append("mince: " + (copper + silver * 10 + gold * 100));

@@ -72,7 +72,7 @@ public class ItemsTools {
                         throw new RuntimeException(ex);
                     }
                 })
-                .flatMap(s -> s.getItems().stream())
+                .flatMap(s -> s.getItems().values().stream())
                 .collect(Collectors.toMap(Item::getDef, Item::getAmount, Integer::sum));
     }
     
@@ -144,13 +144,13 @@ public class ItemsTools {
     
     private static Set<Item> getItems(List<SaveFile> saves) throws IOException {
         return saves.stream()
-                .flatMap(s -> s.getItems().stream())
+                .flatMap(s -> s.getItems().values().stream())
                 .collect(Collectors.toSet());
     }
     
     private static Set<Character> getChars(List<SaveFile> saves) throws IOException {
         return saves.stream()
-                .flatMap(s -> s.getCharacters().stream())
+                .flatMap(s -> s.getCharacters().values().stream())
                 .collect(Collectors.toSet());
     }
     

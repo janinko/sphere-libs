@@ -18,8 +18,9 @@ package eu.janinko.uo.saves.parsers;
 
 import eu.janinko.uo.saves.Item;
 import eu.janinko.uo.util.ScriptReader;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,17 +30,17 @@ import java.util.regex.Pattern;
  */
 public class ItemParser extends AbstractSaveParser {
 
-    private Set<Item> items;
+    private Map<Long, Item> items;
 
     private final Matcher wiMatcher = Pattern.compile("\\[WI ([a-z0-9_]+)]").matcher("");
 
     @Override
     public void reset(ScriptReader it) {
-        items = new HashSet<>();
+        items = new HashMap<>();
         super.reset(it);
     }
 
-    public Set<Item> get() {
+    public Map<Long, Item> get() {
         return items;
     }
 
@@ -49,7 +50,7 @@ public class ItemParser extends AbstractSaveParser {
             String defname = wiMatcher.group(1);
             Item item = new Item(defname);
             parseItem(item);
-            items.add(item);
+            items.put(item.getSerial(), item);
         } else {
             throw it.error("Failed to parse itemdef definition");
         }

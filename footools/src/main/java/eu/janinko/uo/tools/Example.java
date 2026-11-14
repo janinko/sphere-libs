@@ -52,7 +52,7 @@ public class Example {
         SaveParser parser = new SaveParser();
         SaveFile save = parser.parse(saveFile);
 
-        for (eu.janinko.uo.saves.Character character : save.getCharacters()) {
+        for (eu.janinko.uo.saves.Character character : save.getCharacters().values()) {
             System.out.println(character.getName());
         }
     }

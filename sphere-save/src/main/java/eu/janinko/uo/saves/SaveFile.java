@@ -19,16 +19,16 @@ public class SaveFile {
     private int savecount;
 
     private Set<Sector> sectors = new HashSet<>();
-    private Set<Item> items = new HashSet<>();
-    private Set<Character> characters = new HashSet<>();
+    private Map<Long, Item> items = new HashMap();
+    private Map<Long, Character> characters = new HashMap<>();
     private Map<String, String> globals = new HashMap<>();
 
     public void put(Item i) {
-        items.add(i);
+        items.put(i.getSerial(), i);
     }
 
     public void put(Character i) {
-        characters.add(i);
+        characters.put(i.getSerial(), i);
     }
 
     public void put(Sector i) {
