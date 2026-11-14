@@ -4,9 +4,11 @@ import eu.janinko.uo.util.ScriptReader;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import eu.janinko.andaria.spherescript.sphere.objects.Areadef;
 import eu.janinko.andaria.spherescript.sphere.objects.Chardef;
@@ -39,6 +41,16 @@ public class SphereParser {
         return defname.getDefnames().getDefs();
     }
 
+    public void parseDirectory(Path scpPath) throws IOException {
+        try (Stream<Path> files = Files.walk(scpPath)) {
+            Stream<Path> pathStream = files.filter(Files::isRegularFile)
+                    .filter(p -> p.toString().toLowerCase().endsWith(".scp"));
+            Iterable<Path> iterable = pathStream::iterator;
+            for (Path p : iterable) {
+                parse(p);
+            }
+        }
+    }
 
     public void parse(Path scriptFile) throws IOException {
         System.out.println("parsing " + scriptFile);
