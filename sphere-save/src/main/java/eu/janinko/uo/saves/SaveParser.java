@@ -13,7 +13,7 @@ import java.io.InputStream;
  *
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
-public class SaveParser {
+public class SaveParser implements AutoCloseable{
 
     private ScriptReader it;
     private ItemParser items = new ItemParser();
@@ -179,4 +179,8 @@ public class SaveParser {
         }
     }
 
+    @Override
+    public void close() throws IOException {
+        it.close();
+    }
 }

@@ -16,7 +16,7 @@ import java.nio.file.Paths;
  *
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
-public class ScriptReader implements Iterator<String> {
+public class ScriptReader implements Iterator<String>, AutoCloseable {
 
     //private final Iterator<String> it;
     private String previousLine;
@@ -152,4 +152,8 @@ public class ScriptReader implements Iterator<String> {
         nextLine = null;
     }
 
+    @Override
+    public void close() throws IOException {
+        f.close();
+    }
 }
