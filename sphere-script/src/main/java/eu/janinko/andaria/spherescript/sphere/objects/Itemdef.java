@@ -1,5 +1,6 @@
 package eu.janinko.andaria.spherescript.sphere.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -166,35 +167,56 @@ public class Itemdef extends Objectdef {
         if (parent.getId() != null) {
             System.out.println("WARNING item " + getDefname() + "(" + getDefid() + ") has multiple predecesors.");
         }
-        inherit(parent, Itemdef::getType, Itemdef::setType);
+        // CItemBase::CopyBasic
+        inherit(parent, Itemdef::getSpeed, Itemdef::setSpeed);
         inherit(parent, Itemdef::getWeight, Itemdef::setWeight);
+        inherit(parent, Itemdef::getDupelist, (i, dupelist) -> i.setDupelist(new ArrayList<>(dupelist)));
+        inherit(parent, Itemdef::getType, Itemdef::setType);
         inherit(parent, Itemdef::getLayer, Itemdef::setLayer);
-        inherit(parent, Itemdef::getValue, Itemdef::setValue);
-        inherit(parent, Itemdef::getPile, Itemdef::setPile);
-        inherit(parent, Itemdef::getFlip, Itemdef::setFlip);
-        inherit(parent, Itemdef::getDye, Itemdef::setDye);
-        inherit(parent, Itemdef::getRepair, Itemdef::setRepair);
+        if(this.rangeMin == null && this.rangeMax == null){
+            this.rangeMin = parent.getRangeMin();
+            this.rangeMax = parent.getRangeMax();
+        }
         inherit(parent, Itemdef::getTdata1, Itemdef::setTdata1);
         inherit(parent, Itemdef::getTdata2, Itemdef::setTdata2);
         inherit(parent, Itemdef::getTdata3, Itemdef::setTdata3);
         inherit(parent, Itemdef::getTdata4, Itemdef::setTdata4);
 
-        inherit(parent, Itemdef::getResources, Itemdef::setResources);
-        inherit(parent, Itemdef::getSkillmake, Itemdef::setSkillmake);
-        inherit(parent, Itemdef::getSpeed, Itemdef::setSpeed);
-        inherit(parent, Itemdef::getReqstr, Itemdef::setReqstr);
-        inherit(parent, Itemdef::getSkill, Itemdef::setSkill);
-        inherit(parent, Itemdef::getTwohands, Itemdef::setTwohands);
-
+        // CBaseBaseDef::CopyBasic
+        inherit(parent, Itemdef::getName, Itemdef::setName);
+        // m_wDispIndex
+        //inherit(parent, Itemdef::getHeight, Itemdef::setHeight);
+        // m_ResLevel
+        // m_ResDispDnHue
+        // m_ResDispDnId
         if(this.damageMin == null && this.damageMax == null){
             this.damageMin = parent.getDamageMin();
             this.damageMax = parent.getDamageMax();
         }
+        //inherit(parent, Itemdef::getCan, Itemdef::setCan);
+
+
+
+        /* Probably not inherited
+
+        inherit(parent, Itemdef::getValue, Itemdef::setValue);
+        inherit(parent, Itemdef::getPile, Itemdef::setPile);
+        inherit(parent, Itemdef::getFlip, Itemdef::setFlip);
+        inherit(parent, Itemdef::getDye, Itemdef::setDye);
+        inherit(parent, Itemdef::getRepair, Itemdef::setRepair);
+
+        inherit(parent, Itemdef::getResources, Itemdef::setResources);
+        inherit(parent, Itemdef::getSkillmake, Itemdef::setSkillmake);
+        inherit(parent, Itemdef::getReqstr, Itemdef::setReqstr);
+        inherit(parent, Itemdef::getSkill, Itemdef::setSkill);
+        inherit(parent, Itemdef::getTwohands, Itemdef::setTwohands);
+
 
         if(this.hitMin == null && this.hitMax == null){
             this.hitMin = parent.getHitMin();
             this.hitMax = parent.getHitMax();
         }
+         */
     }
 
     private <T> void inherit(Itemdef parent, Function<Itemdef, T> getter, BiConsumer<Itemdef, T> setter) {
