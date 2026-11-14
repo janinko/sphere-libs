@@ -71,6 +71,8 @@ public class CharParser extends AbstractSaveParser {
                 character.setAccount(it.substring(8));
             } else if (it.lowercase().startsWith("skillclass=")) {
                 character.setSkillclass(it.substring(11));
+            } else if (it.lowercase().startsWith("create=")) {
+                character.setCreate(parseNum(it.substring(7)));
             } else if (it.line().startsWith("[")) {
                 it.back();
                 return;

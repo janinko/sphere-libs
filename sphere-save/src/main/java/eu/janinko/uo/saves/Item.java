@@ -1,5 +1,7 @@
 package eu.janinko.uo.saves;
 
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -13,8 +15,22 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Item extends Entry {
 
-    Long amount;
-    Long cont;
+    private Long amount;
+    private Long cont;
+    private String dispID;
+    private String type;
+    private Integer layer;
+    private Set<String> events = new HashSet<>();
+    private Set<String> speech = new HashSet<>();
+    private Long contgrid;
+    private Long attr;
+    private String more1, more2;
+    private Integer moreX, moreY, moreZ, moreM;
+    private Long color;
+    private Long quality;
+    private Long timestamp;
+    private Long timer;
+    private Long link;
 
     public int getAmount() {
         if (amount == null) {
@@ -39,6 +55,14 @@ public class Item extends Entry {
      */
     public Item(String def) {
         super(def);
+    }
+
+    public void addEvent(String event) {
+        events.add(event);
+    }
+
+    public void addSpeech(String speech) {
+        this.speech.add(speech);
     }
 
 }

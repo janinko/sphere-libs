@@ -66,9 +66,39 @@ public class ItemParser extends AbstractSaveParser {
             } else if (it.lowercase().startsWith("amount=")) {
                 item.setAmount(parseNum(it.substring(7)));
             } else if (it.lowercase().startsWith("name=")) {
-                item.setName(it.substring(5));
+                item.setName(it.line().substring(5));
             } else if (it.lowercase().startsWith("p=")) {
                 parsePosition(item, it.substring(2));
+            } else if (it.lowercase().startsWith("attr=")) {
+                item.setAttr(parseNum(it.substring(5)));
+            } else if (it.lowercase().startsWith("color=")) {
+                item.setColor(parseNum(it.substring(6)));
+            } else if (it.lowercase().startsWith("contgrid=")) {
+                item.setContgrid(parseNum(it.substring(9)));
+            } else if (it.lowercase().startsWith("events=")) {
+                item.addEvent(it.substring(7));
+            } else if (it.lowercase().startsWith("dispid=")) {
+                item.setDispID(it.substring(7));
+            } else if (it.lowercase().startsWith("layer=")) {
+                item.setLayer((int) parseNum(it.substring(6)));
+            } else if (it.lowercase().startsWith("more1=")) {
+                item.setMore1(it.substring(6));
+            } else if (it.lowercase().startsWith("more2=")) {
+                item.setMore2(it.substring(6));
+            } else if (it.lowercase().startsWith("morep=")) {
+                parseMoreP(item, it.substring(6));
+            } else if (it.lowercase().startsWith("speech=")) {
+                item.addSpeech(it.substring(7));
+            } else if (it.lowercase().startsWith("timer=")) {
+                item.setTimer(parseNum(it.substring(6)));
+            } else if (it.lowercase().startsWith("timestamp=")) {
+                item.setTimestamp(parseNum(it.substring(10)));
+            } else if (it.lowercase().startsWith("type=")) {
+                item.setType(it.substring(5));
+            } else if (it.lowercase().startsWith("quality=")) {
+                item.setQuality(parseNum(it.substring(8)));
+            } else if (it.lowercase().startsWith("link=")) {
+                item.setLink(parseNum(it.substring(5)));
             } else if (it.line().startsWith("[")) {
                 it.back();
                 return;
@@ -88,4 +118,18 @@ public class ItemParser extends AbstractSaveParser {
         }
     }
 
+    protected void parseMoreP(Item entry, String substring) {
+        String[] split = substring.split(",");
+        if (split.length < 2) {
+            throw it.error("MOREP must have at least 2 coordinates");
+        }
+        entry.setMoreX((int) parseNum(split[0]));
+        entry.setMoreY((int) parseNum(split[1]));
+        if (split.length > 2) {
+            entry.setMoreZ((int) parseNum(split[2]));
+        }
+        if (split.length > 3) {
+            entry.setMoreM((int) parseNum(split[3]));
+        }
+    }
 }
