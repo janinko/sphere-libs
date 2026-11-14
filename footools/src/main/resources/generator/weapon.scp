@@ -10,6 +10,7 @@ skill=${skill}
 reqstr=${reqstr}
 twohands=${twohands}
 weight=${weight}
+penPhysical=${penPhysical}
 
 skillmake=${skillmake}
 resources=${resources}

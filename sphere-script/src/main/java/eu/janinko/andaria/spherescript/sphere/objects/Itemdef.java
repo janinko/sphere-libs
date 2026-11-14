@@ -55,6 +55,8 @@ public class Itemdef extends Objectdef {
     private String skill;
     private Long rangeMin, rangeMax;
 
+    private Long penPhysical;
+
 /*
     private String AMMOANIM;	// Overrides TDATA4 for bow/crossbow type weapons.
 	private String AMMOANIMHUE;	// Sets the color of the effect when firing bow/crossbow type weapons.
@@ -124,6 +126,10 @@ public class Itemdef extends Objectdef {
 
     public void setArmor(long armor) {
         this.armor = armor;
+    }
+
+    public void setPenPhysical(long value) {
+        penPhysical = value;
     }
 
     public List<Resource> getSkillmake() {

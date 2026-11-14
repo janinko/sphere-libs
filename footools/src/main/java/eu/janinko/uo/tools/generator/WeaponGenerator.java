@@ -165,6 +165,9 @@ public class WeaponGenerator {
         }
         i.addTag("rqdex", r.get("reqdex"));
 
+        i.setPenPhysical(Long.parseLong(r.get("penet")));
+
+
         i.setRepair(true);
         return i;
     }
@@ -276,7 +279,7 @@ public class WeaponGenerator {
                 .collect(Collectors.joining(", ")));
     }
 
-    private void fillBasicInfo(Map<String, Object> variables, Itemdef i){
+    private void fillBasicInfo(Map<String, Object> variables, Itemdef i) {
         variables.put("id", i.getId());
         variables.put("defname", i.getDefname());
         variables.put("type", i.getType());
@@ -294,6 +297,7 @@ public class WeaponGenerator {
         variables.put("description", i.getDescription());
         variables.put("hitsMin", i.getHitMin());
         variables.put("hitsMax", i.getHitMax());
+        variables.put("penPhysical", i.getPenPhysical());
     }
 
     private Map<String, Object> getVariables(Itemdef i) {
