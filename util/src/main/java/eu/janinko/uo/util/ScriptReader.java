@@ -116,6 +116,10 @@ public class ScriptReader implements Iterator<String> {
         return new RuntimeException(message + ":\n" + file + ":" + lineNum + "\n" + currentLine + "\n" + new String(new char[substring]).replace('\0', ' ') + "^");
     }
 
+    public RuntimeException error(String message, Exception ex) {
+        return new RuntimeException(message + ":\n" + file + ":" + lineNum + "\n" + currentLine + "\n" + new String(new char[substring]).replace('\0', ' ') + "^", ex);
+    }
+
     public String substring(int i) {
         substring = i;
         return lowercase().substring(i);

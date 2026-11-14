@@ -15,13 +15,9 @@ public class AbstractParser {
     protected long parseNum(String line) {
         line = line.trim();
         try {
-            if (line.startsWith("0")) {
-                return Long.parseLong(line, 16);
-            } else {
-                return Long.parseLong(line);
-            }
+            return ValueParser.parseNum(line);
         } catch (NumberFormatException ex) {
-            throw it.error("Failed to parse number '" + line + "'");
+            throw it.error("Failed to parse number '" + line + "'", ex);
         }
     }
 
